@@ -1,3 +1,3 @@
 # Simple HWID Spoofer
-a very simple hwid spoofer
+a very very very very simple hwid spoofer
 ![alt text](https://raw.githubusercontent.com/Lufzys/SimpleHWIDSpoofer/main/simpleHwidSpoofer.PNG?raw=true)
