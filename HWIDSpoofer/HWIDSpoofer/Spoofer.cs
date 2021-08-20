@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using Microsoft.Win32;
 
@@ -26,6 +26,9 @@ namespace HWIDSpoofer
             {
                 Log.Clear();
                 string oldValue = GetValue();
+                Console.WriteLine("Old Value {0}", oldValue);
+                Console.WriteLine("New value: {0}", Guid.NewGuid().ToString());
+
                 bool result =  SetValue("{" + Guid.NewGuid().ToString() + "}");
                 if (result)
                 {
@@ -107,7 +110,7 @@ namespace HWIDSpoofer
 
         public static class ProductId
         {
-            public static Regedit regeditOBJ = new Regedit(@"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion");
+            public static Regedit regeditOBJ = new Regedit(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion");
             public static readonly string Key = "ProductID";
 
             public static string GetValue()
@@ -150,7 +153,7 @@ namespace HWIDSpoofer
             {
                 try
                 {
-                    using (RegistryKey key = Registry.LocalMachine.OpenSubKey(regeditPath))
+                    using (RegistryKey key = Registry.LocalMachine.OpenSubKey(regeditPath, RegistryKeyPermissionCheck.ReadSubTree))
                     {
                         if (key != null)
                         {
@@ -174,7 +177,7 @@ namespace HWIDSpoofer
             {
                 try
                 {
-                    using (RegistryKey key = Registry.LocalMachine.OpenSubKey(regeditPath))
+                    using (RegistryKey key = Registry.LocalMachine.OpenSubKey(regeditPath, RegistryKeyPermissionCheck.ReadWriteSubTree))
                     {
                         if (key != null)
                         {
